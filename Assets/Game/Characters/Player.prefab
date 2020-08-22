@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3343036755338869487}
   - component: {fileID: 7895769438800868848}
   - component: {fileID: 4921694683891598087}
+  - component: {fileID: 299800181}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -132,7 +133,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 5.66
+  m_Speed: 4.155529
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 5000
@@ -166,6 +167,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1459979f5a8fd60469df54d74787e5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRange: 2
+  timeBetweenAttacks: 1
+--- !u!114 &299800181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742534002594443794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbb9c6f966387143814892bf3cfcbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8319255702655410274

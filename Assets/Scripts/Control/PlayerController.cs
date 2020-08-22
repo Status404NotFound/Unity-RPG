@@ -1,27 +1,62 @@
 ﻿using UnityEngine;
 using RPG.Movement;
+using RPG.Combat;
 
 namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        private void Update()
+        Fighter fighter;
+        Mover mover;
+
+        private void Start()
         {
-            if (Input.GetMouseButton(0))
-            {
-                MoveToCursor();
-            }
+            fighter = GetComponent<Fighter>();
+            mover = GetComponent<Mover>();
         }
 
-        private void MoveToCursor()
+        private void Update()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (InteractWithCombat()) return;
+
+            if (InteractWithMovment()) return;
+        }
+
+        private bool InteractWithCombat()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            foreach (RaycastHit hit in hits)
+            {
+                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                if (target == null) continue;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    fighter.Atack(target);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private bool InteractWithMovment()
+        {
             RaycastHit hit;
-            bool hasHit = Physics.Raycast(ray, out hit);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
             if (hasHit)
             {
-                GetComponent<Mover>().MoveTo(hit.point);
+                if (Input.GetMouseButton(0))
+                {
+                    mover.StartMoveAction(hit.point);
+                }
+                return true;
             }
+            return false;
+        }
+
+        private static Ray GetMouseRay()
+        {
+            return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
     }
 }
