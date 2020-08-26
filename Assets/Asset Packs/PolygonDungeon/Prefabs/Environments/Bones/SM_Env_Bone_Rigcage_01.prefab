@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 468028}
   - component: {fileID: 3375046}
   - component: {fileID: 2371978}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SM_Env_Bone_Rigcage_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
