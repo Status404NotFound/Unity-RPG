@@ -6,7 +6,7 @@ using RPG.Control;
 // Observer pattern
 namespace RPG.Cinematics
 {
-    class CinematicsControlRemover : MonoBehaviour
+    public class CinematicsControlRemover : MonoBehaviour
     {
         GameObject player;
         private void Start()
@@ -18,7 +18,7 @@ namespace RPG.Cinematics
 
         void DisableControl(PlayableDirector pd)
         {
-            
+
             player.GetComponent<ActionScheduler>().CancelCurrentAction();
             player.GetComponent<PlayerController>().enabled = false;
         }

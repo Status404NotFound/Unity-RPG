@@ -18,7 +18,7 @@ namespace RPG.Control
 
         public int GetNaxtIndex(int i)
         {
-            if(i + 1 == transform.childCount)
+            if (i + 1 == transform.childCount)
             {
                 return 0;
             }
