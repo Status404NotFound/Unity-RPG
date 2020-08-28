@@ -1,5 +1,4 @@
-﻿using RPG.Combat;
-using RPG.Core;
+﻿using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
