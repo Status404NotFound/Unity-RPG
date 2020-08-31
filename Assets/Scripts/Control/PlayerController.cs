@@ -2,7 +2,6 @@
 using RPG.Movement;
 using RPG.Combat;
 using RPG.Core;
-using Cinemachine;
 
 namespace RPG.Control
 {
@@ -12,7 +11,7 @@ namespace RPG.Control
         Mover mover;
         Health health;
 
-        private void Start()
+        private void Awake()
         {
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
@@ -47,6 +46,26 @@ namespace RPG.Control
                 }
                 return true;
             }
+/*            if (Input.touchCount > 0)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit[] touchHits = Physics.RaycastAll(ray);
+                foreach (RaycastHit hit in touchHits)
+                {
+                    CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                    if (target == null) continue;
+                    if (!fighter.CanAttack(target.gameObject))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        fighter.Atack(target.gameObject);
+                        return true;
+                    }
+                }
+                return false;
+            }*/
             return false;
         }
 
@@ -62,6 +81,11 @@ namespace RPG.Control
                 }
                 return true;
             }
+/*            if (Input.touchCount > 0)
+            {
+                mover.StartMoveAction(Input.GetTouch(0).position, 1f);
+                return true;
+            }*/
             return false;
         }
 

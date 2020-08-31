@@ -6,22 +6,29 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 5f;
+        [SerializeField] Transform handTransform = null;
+        [SerializeField] Weapon defoultWeapon = null;
+
 
         Health target;
         Mover mover;
         Animator animator;
         ActionScheduler actionScheduler;
+        Weapon currentWeapon = null;
 
         float timeSinceLastAttack = Mathf.Infinity;
 
-        private void Start()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();
+        }
+
+        private void Start()
+        {
+            EquipWeapon(defoultWeapon);
         }
 
         private void Update()
@@ -42,6 +49,12 @@ namespace RPG.Combat
             }
         }
 
+        public void EquipWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+            weapon.Spawn(handTransform, animator);
+        }
+
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
@@ -49,28 +62,32 @@ namespace RPG.Combat
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 //This will trigger the Hit() animation event.
-                TriggerAttack();
+                int attackID = Random.Range(1, 6);
+
+                TriggerAttack(attackID);
                 timeSinceLastAttack = 0;
             }
         }
 
-        private void TriggerAttack()
+        private void TriggerAttack(int attackID)
         {
+
             animator.ResetTrigger("stopAttack");
             animator.SetTrigger("attack");
+            animator.SetInteger("attackID", attackID);
         }
 
         #region Animation Events
         void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(currentWeapon.Damage);
         }
         #endregion
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.Range;
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -97,6 +114,7 @@ namespace RPG.Combat
         {
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
+            animator.SetInteger("attackID", 0);
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using RPG.Core;
+﻿using Cinemachine;
+using RPG.Core;
 using RPG.Saving;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,12 +11,13 @@ namespace RPG.Movement
     {
         [SerializeField] Transform target;
         [SerializeField] float maxSpeed = 6.539749f;
+        [SerializeField] float maxNavPathLength = 40f;
 
         NavMeshAgent navMeshAgent;
-        Animator animator;
         Health health;
+        Animator animator;
 
-        private void Start()
+        private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
@@ -24,7 +27,6 @@ namespace RPG.Movement
         void Update()
         {
             navMeshAgent.enabled = !health.IsDead();
-
             UpdateAnimator();
         }
 
