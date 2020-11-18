@@ -130,8 +130,18 @@ PrefabInstance:
         type: 3}
       propertyPath: defoultWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: b9b0866966144c14da98cd21d3d8c811,
+      objectReference: {fileID: 11400000, guid: 2fdbc924025187748ba7c999770cab03,
         type: 2}
+    - target: {fileID: 4921694683891598087, guid: b31305c568b202149bcc4bf6404818df,
+        type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 6694105130726059794}
+    - target: {fileID: 4921694683891598087, guid: b31305c568b202149bcc4bf6404818df,
+        type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 6694105130725978298}
     - target: {fileID: 6691488525187472334, guid: b31305c568b202149bcc4bf6404818df,
         type: 3}
       propertyPath: maxSpeed
@@ -257,6 +267,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fd72ede44298284b89704ad0b9dedad, type: 3}
+--- !u!4 &6694105130726059794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 411612, guid: 4fd72ede44298284b89704ad0b9dedad,
+    type: 3}
+  m_PrefabInstance: {fileID: 6694105130726172878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6694105130725978298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 465012, guid: 4fd72ede44298284b89704ad0b9dedad,
